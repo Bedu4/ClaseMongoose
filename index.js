@@ -1,0 +1,15 @@
+const express = require('express');
+const mongoose = require('mongoose');
+const bodyParser = require('body-parser');
+const keys = require('./config/keys');
+
+mongoose.connect(keys.mongoConnection);
+
+const app = express();
+app.use(bodyParser.json());
+
+const ruta = require('./routes/personasRoutes');
+ruta(app);
+// require('./routes/personasRoutes')(app);
+
+app.listen(process.env.PORT || 5000);
